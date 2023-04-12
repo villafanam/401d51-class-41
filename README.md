@@ -1,4 +1,4 @@
-# LAB - Class 41
+# LAB - Class 42
 
 ## Project: React Application - map cluster
 
@@ -7,36 +7,38 @@
 ### Problem Domain  
 
 + As a user, I want to be able to place makers on the map
-+ As a user, I want to be able to cluster makers when I zoom out on the map 
++ As a user, I want to be able to cluster makers when I zoom out on the map
++ As a user, I want to be able to remove marker by pressing on them
++ As a user, I want to be able to get my current location on the map
 
 ### Links and Resources
 
-- [GitHub Actions ci/cd](https://github.com/villafanam/401d51-class-41/pull/1) 
-- [GitHub PR](https://github.com/villafanam/401d51-class-41/pull/3) 
-<!-- - [Code SandBox]
-  + [Lab 41]() -->
++ [GitHub Actions ci/cd](https://github.com/villafanam/401d51-class-41/pull/1)
++ [GitHub PR](https://github.com/villafanam/401d51-class-41/pull/3)
 
 ### Collaborators
 
 ### Setup
 
-- `npm install`
++ `npm install`
 
 #### How to initialize/run your application (where applicable)
 
-- `npx expo start --tunnel`
++ `npx expo start --tunnel`
 
 #### Features / Routes
 
-- Feature One: place markers on map
-- Feature Two: cluster marker within a certain radius on the map
++ Feature One: place markers on map
+  + ![markers](/assets/markers.jpg)
 
-#### Tests
++ Feature Two: cluster marker within a certain radius on the map
+  + ![cluster](/assets/cluster.jpg)
 
-- How do you run tests?
-- Any tests of note?
-- Describe any tests that you did not complete, skipped, etc
++ Feature Three: load map on to your currrent location
+  + onPress my-location icon will get your current location and
+  render map at that location
+  + ![](/assets/myLocation.jpg)
 
 #### UML
 
-Link to an image of the UML for your application and response to events
+![UML](/assets/lab42_UML.jpg)

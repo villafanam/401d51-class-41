@@ -45,8 +45,8 @@ export default function App() {
     setMapRegion({
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
-      latitudeDelta: 8.5,
-      longitudeDelta: 8.5,
+      latitudeDelta: 1,
+      longitudeDelta: 1,
     });
   };
 
@@ -64,8 +64,8 @@ export default function App() {
       setMapRegion({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
-        latitudeDelta: 8.5,
-        longitudeDelta: 8.5,
+        latitudeDelta: 4,
+        longitudeDelta: 4,
       });
     };
     getLocation();
