@@ -12,7 +12,7 @@
 ### Links and Resources
 
 - [GitHub Actions ci/cd](https://github.com/villafanam/401d51-class-41/pull/1) 
-- [GitHub PR](https://github.com/villafanam/401d51-class-41/pull/1) 
+- [GitHub PR](https://github.com/villafanam/401d51-class-41/pull/3) 
 <!-- - [Code SandBox]
   + [Lab 41]() -->
 
