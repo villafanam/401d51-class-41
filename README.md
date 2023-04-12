@@ -24,7 +24,7 @@
 
 #### How to initialize/run your application (where applicable)
 
-- `npm expo start --tunnel`
+- `npx expo start --tunnel`
 
 #### Features / Routes
 
