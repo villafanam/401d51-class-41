@@ -2,7 +2,7 @@
 
 ## Project: React Application - map cluster
 
-### Author: Student/Group Name
+### Author: Marco Villafana
 
 ### Problem Domain  
 
