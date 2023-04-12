@@ -2,10 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import MapView from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
-import { useState } from 'react';
-import { Box, Icon, Input, NativeBaseProvider } from 'native-base';
+import { useEffect, useState } from 'react';
+import { Box, Icon, IconButton, Input, NativeBaseProvider } from 'native-base';
 import { MaterialIcons } from "@expo/vector-icons";
-
+import * as Location from 'expo-location';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 
 const INITIAL_REGION = {
@@ -20,7 +21,9 @@ let color = '';
 
 
 export default function App() {
-  let [data, setData] = useState([]);
+  const [data, setData] = useState([]);
+  const [mapRegion, setMapRegion] = useState(INITIAL_REGION);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const handleRemoveMarker = (e) => {
     let makerList = [...data];
@@ -29,31 +32,69 @@ export default function App() {
     setData(makerList);
   };
 
+  const getCurrentLocation = async () => {
 
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      setErrorMsg('Permission to access location was denied');
+      return;
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    console.log('location:----', location);
+    setMapRegion({
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+      latitudeDelta: 8.5,
+      longitudeDelta: 8.5,
+    });
+  };
+
+  useEffect(() => {
+    const getLocation = async () => {
+
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      console.log('location:----', location);
+      setMapRegion({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 8.5,
+        longitudeDelta: 8.5,
+      });
+    };
+    getLocation();
+  }, []);
+
+  console.log('mapRegion:---', mapRegion);
   return (
     <>
       <NativeBaseProvider>
         <Box safeArea>
           <Input
             placeholder="Search Places"
-            width="100%" borderRadius="4"
+            width="100%"
+            borderRadius="4"
             py="3"
             px="1"
             fontSize="14"
-            InputLeftElement={
-              <Icon
-                m="2"
-                ml="3"
-                size="6"
-                color="gray.400"
-                as={<MaterialIcons name="search" />}
+            InputLeftElement={<Icon m="2" ml="3" size="6" color="gray.400" as={<MaterialIcons name="search" />} />}
+            InputRightElement={
+              <IconButton
+                onPress={() => getCurrentLocation()}
+                icon={<Icon m="2" mr="3" size="6" color="gray.400" as={<MaterialIcons name="my-location" />} />}
               />
             }
           />
         </Box>
 
         <MapView
-          initialRegion={INITIAL_REGION}
+          region={mapRegion}
           style={{ flex: 1 }}
           onLongPress={e => {
             color = colorPins[Math.floor(Math.random() * colorPins.length)];
